@@ -1,35 +1,34 @@
 # OpenEFT
-OpenEFT is an open-source project created because the ATF are incompetent at best and maliciously trying to thwart civil rights at worst.
-
-Like the project? Consider sponsoring me so I can continue to develop these free tools!
-
-[![GitHub Sponsor](https://img.shields.io/github/sponsors/NoahGWood?label=Sponsor&logo=GitHub)](https://github.com/sponsors/NoahGWood)
 
 <img src="docs/imgs/blurred.png" width="250" />
 
-So, if you're here, you probably need to file a Form 1 and would like to file electronically so that it doesn't take 8 months for the ATF to lose your paper fingerprint card, only to find the fingerprinting companies have jacked their prices up to extortionate amounts.
+OpenEFT is an open-source project originally created by Noah Wood. Its purpose is to convert physical FD-258 fingerprint cards to EBTS-packaged, EFT-formatted files.
 
-If you're not up for compiling and installing software to DIY, I have created a generation service that you can use at [OpenEFT.org](https://www.openeft.org/eft)
+So, if you're here, you probably need to file a Form 1 or Form 4 and would like to file electronically.
+
+The original software appears to be abandoned and had a few core issues, including links to moving codebases that are being maintained independently (such as NIST's NBIS). Because of this, 
 
 ## How To Use
 
-1. Print off FD-258 card (Use the provided template in the repo for best results)
+1. Print an FD-258 card (use <a href=fd-258-110120.pdf>this file</a> for a fillable card)
 
-2. Add fingerprints to form (you don't need to fill out the boxes)
+2. Roll your prints on the card (you don't need to fill out the boxes)
 
-3. Take a high-resolution **1:1** scan or picture of the completed FD-258 card.
+3. Take a high-resolution **1:1** scan (at least 600 DPI) of the completed FD-258 card.
 
 4. Run the python program from the command line like so:
 
-   ```bash
-   python3 openeft.py
+   ```
+      python3 openeft.py
    ```
 
 5. Follow the instructions the program provides and respond to the prompts with your info.
 
-6. ??? (programming magic happens here, just relax)
+6. Validate the file using <a href="https://www.netxsolutions.co.uk/NISTViewer.aspx" target="_blank">NIST Viewer</a>
 
-7. Congratulations! You now have an EFT!
+7. Validate the file was packaged correctly to EBTS specifications by attempting to upload it to the Responsible Person train stop of eForms
+
+8. Congratulations! You now have an EFT!
 
 ## Tips
 
@@ -37,18 +36,18 @@ If you're not up for compiling and installing software to DIY, I have created a 
 
 If you've never had your fingerprints taken, you definitely need to know how to do it. The first ten prints should be "rolled" on as the video demonstrates, then you need to take two "slap" impressions of the four fingers on each hand and two flat impressions of the thumbs.
 
-[![Everything Is AWESOME](http://img.youtube.com/vi/47YLGj_yLVA/0.jpg)](//www.youtube.com/watch?v=47YLGj_yLVA "Fingerprinting Technique")
+[![Rolling Your Prints](http://img.youtube.com/vi/47YLGj_yLVA/0.jpg)](//www.youtube.com/watch?v=47YLGj_yLVA "Fingerprinting Technique")
 
 #### Bad Fingerprints
 
-If you mess up on a fingerprint, you can use a white address label within the blue or black bounding boxes to re-ink that specific finger so you don't need to waste multiple cards. You're not *supposed* to use white out, it could be rejected by the ATF/FBI, but if you're willing to try it let us know if it works! 
+If you mess up on a fingerprint, you can use a white address label within the blue or black bounding boxes to re-ink that specific finger so you don't need to waste multiple cards. Do not use white-out.
 
 ## Installing
 
 1. Clone the repo:
 
    ```sh
-   git clone --recurse-submodules https://github.com/NoahGWood/OpenEFT.git
+   git clone --recurse-submodules https://github.com/Robbbbbbbbb/OpenEFT.git
    ```
 
 2. Build & Install
@@ -71,12 +70,13 @@ If you mess up on a fingerprint, you can use a white address label within the bl
 
 #### Operating Systems
 
-* Linux Only (maybe, I have no idea tbh.)
+* Linux (Ubuntu)
+* Windows using WSL (https://learn.microsoft.com/en-us/windows/wsl/install)
 
 #### External Libraries
 
 * [OpenJPEG](https://github.com/uclouvain/openjpeg)
-* [NBIS](https://www.nist.gov/services-resources/software/nist-biometric-image-software-nbis) (Need to build from scratch for now until a proper installer is created)
+* [NBIS](https://www.nist.gov/services-resources/software/nist-biometric-image-software-nbis) (Currently a working build is forked to https://github.com/Robbbbbbbbb/NBIS.git and is called with the ./build_windows.sh script)
 
 #### Python Modules
 

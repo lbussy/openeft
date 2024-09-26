@@ -66,6 +66,13 @@ If you mess up on a fingerprint, you can use a white address label within the bl
    ```bash
    python3 openeft.py
 
+6. Access the app in a web browser:
+
+   HTTP://localhost:8080
+
+   *NOTE* If you want to access this on other hosts on your network, you can open TCP/8080 on Windows Firewall.
+   *NOTE* If placing behind a reverse proxy, do _not_ expose this to the internet unless you want the world to have your EFTs and be able to read the contents (eg: your SSN)
+
 ## Requirements
 
 #### Operating Systems

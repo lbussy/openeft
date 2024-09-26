@@ -22,13 +22,15 @@ The original software appears to be abandoned and had a few core issues, includi
       python3 openeft.py
    ```
 
-5. Follow the instructions the program provides and respond to the prompts with your info.
+5. Access the tool via HTTP://localhost:8080
 
-6. Validate the file using <a href="https://www.netxsolutions.co.uk/NISTViewer.aspx" target="_blank">NIST Viewer</a>
+6. Follow the instructions the program provides and respond to the prompts with your info.
 
-7. Validate the file was packaged correctly to EBTS specifications by attempting to upload it to the Responsible Person train stop of eForms
+7. Validate the file using <a href="https://www.netxsolutions.co.uk/NISTViewer.aspx" target="_blank">NIST Viewer</a>
 
-8. Congratulations! You now have an EFT!
+8. Validate the file was packaged correctly to EBTS specifications by attempting to upload it to the Responsible Person train stop of eForms
+
+9. Congratulations! You now have an EFT!
 
 ## Tips
 

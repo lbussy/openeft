@@ -1,3 +1,5 @@
+# ATF only requires slaps and thumbs. The app is not currently set up to build a 10-roll plus slaps. Just know you can only use these for eForms.
+
 from collections import namedtuple
 
 OCRLocation = namedtuple("OCRLocation", ["id", "bbox", "fp_number"])
@@ -20,18 +22,18 @@ OCR_LOCATIONS = [
 # Not right locations #    OCRLocation("weight", (11582,3338,772,348),0),
 # Not right locations #    OCRLocation("eyes", (11582,3338,836,348),0),
 # Not right locations #    OCRLocation("hair", (11582,3338,760,348),0),
-    OCRLocation("R_THUMB", (90,7103,3700,3580), 1),
-    OCRLocation("R_INDEX", (3884,7103,3835,3580), 2),
-    OCRLocation("R_MIDDLE", (7753,7103,3796,3580), 3),
-    OCRLocation("R_RING", (11583,7103,3836,3580), 4),
-    OCRLocation("R_LITTLE", (15453,7103,3658,3580), 5),
-    OCRLocation("L_THUMB", (90,10717,3700,3580), 6),
-    OCRLocation("L_INDEX", (3884,10717,3835,3580), 7),
-    OCRLocation("L_MIDDLE", (7753,10717,3796,3580), 8),
-    OCRLocation("L_RING", (11583,10717,3836,3580), 9),
-    OCRLocation("L_LITTLE", (15453,10717,3658,3580), 10),
-    OCRLocation("R_THUMB2", (9653,14317,1866,4634), 11),
-    OCRLocation("L_THUMB2", (7753,14317,1866,4634), 12),
+#    OCRLocation("R_THUMB", (90,7103,3700,3580), 1),
+#    OCRLocation("R_INDEX", (3884,7103,3835,3580), 2),
+#    OCRLocation("R_MIDDLE", (7753,7103,3796,3580), 3),
+#    OCRLocation("R_RING", (11583,7103,3836,3580), 4),
+#    OCRLocation("R_LITTLE", (15453,7103,3658,3580), 5),
+#    OCRLocation("L_THUMB", (90,10717,3700,3580), 6),
+#    OCRLocation("L_INDEX", (3884,10717,3835,3580), 7),
+#    OCRLocation("L_MIDDLE", (7753,10717,3796,3580), 8),
+#    OCRLocation("L_RING", (11583,10717,3836,3580), 9),
+#    OCRLocation("L_LITTLE", (15453,10717,3658,3580), 10),
+#    OCRLocation("R_THUMB2", (9653,14317,1866,4634), 11),
+#    OCRLocation("L_THUMB2", (7753,14317,1866,4634), 12),
     OCRLocation("R_FOUR", (11583,14317,7559,4634), 13),
     OCRLocation("L_FOUR", (90,14417,7559,4634), 14),
     OCRLocation("2_THUMBS", (7753,14317,3795,4634), 15), # Consolidate into 1 record

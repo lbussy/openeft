@@ -1,6 +1,3 @@
-# This file is modified to accept all ten prints. It may error out - working to fix this
-# Rename "conversion/core/fd258_ocr.py" to "fd258_ocr.py.bak" and then rename this file to "fd258_ocr.py"
-
 from collections import namedtuple
 
 OCRLocation = namedtuple("OCRLocation", ["id", "bbox", "fp_number"])

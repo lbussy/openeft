@@ -1,3 +1,11 @@
+# This is the 10-print version of this app. It is not stable and still a WIP. Use the Main branch!
+
+#### Current Problems
+- 10print scanning is not functioning correctly
+  - Related file: conversion/core/fd258_ocr.py
+  - When lines 26-37 are uncommented, it throws off OCR locations
+  - When OCR does work correctly (which seems to be sporadic), it throws an error referencing NBIS 1 1 1 1 0 location, which means everything is attempting to be consolidated into the four slaps instead of individual fingers
+
 # OpenEFT
 
 <img src="docs/imgs/blurred.png" width="250" />

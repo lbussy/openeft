@@ -61,33 +61,43 @@
 function t(entry, tname){
     return entry.getElementsByTagName(tname)[0];
 }
+
 function date(entry){
-    d = new Date(t(entry, 'updated').textContent)
-    year = d.getFullYear();
-    month = d.getMonth();
-    day = d.getDay();
-    time = d.toLocaleTimeString();
-    datestring = month + "/" + day + "/" + year + " @ " + time.split(":")[0] + ":" + time.split(":")[1] + " " + time.split(" ")[1];
+    const d = new Date(t(entry, 'updated').textContent);
+    const year = d.getFullYear();
+    const month = d.getMonth() + 1; // getMonth() is zero-based, so add 1
+    const day = d.getDate(); // getDate() gets the correct day of the month
+    const time = d.toLocaleTimeString();
+    
+    // Format date as MM/DD/YYYY with proper time formatting
+    const datestring = `${month}/${day}/${year} @ ${time.split(":")[0]}:${time.split(":")[1]} ${time.split(" ")[1]}`;
     return datestring;
 }
+
 function html2txt(html){
     return html.replace(/<(?:.|\n)*?>/gm, '');
 }
+
 function author(entry){
     return t(entry,"name").textContent;
 }
+
 function authorUrl(entry){
     return t(entry,"uri").textContent;
 }
+
 function authorThumb(entry){
     return t(entry,"media:thumbnail").getAttribute("url");
 }
+
 function content(entry){
     return html2txt(t(entry,'content').textContent).slice(0,200);
 }
+
 function link(entry){
     return t(entry,"link").getAttribute("href");
 }
+
 fetch("/static/commits.xml")
     .then(response => response.text())
     .then(xml => {
@@ -119,8 +129,9 @@ fetch("/static/commits.xml")
 
         let x = document.getElementById("commit-body");
         x.innerHTML += out;
-    })
-    fetch("/static/discussions.xml")
+    });
+
+fetch("/static/discussions.xml")
     .then(response => response.text())
     .then(xml => {
         const parser = new DOMParser();
@@ -148,8 +159,9 @@ fetch("/static/commits.xml")
 
         let x = document.getElementById("discussions-body");
         x.innerHTML += out;
-    })
-    fetch("/static/releases.xml")
+    });
+
+fetch("/static/releases.xml")
     .then(response => response.text())
     .then(xml => {
         const parser = new DOMParser();
@@ -177,7 +189,7 @@ fetch("/static/commits.xml")
 
         let x = document.getElementById("release-body");
         x.innerHTML += out;
-    })
+    });
 </script>
 
 <!-- Added button with custom styles -->
@@ -201,4 +213,4 @@ fetch("/static/commits.xml")
     }
 </style>
 
-    {% endblock %}
+{% endblock %}

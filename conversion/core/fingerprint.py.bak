@@ -120,7 +120,7 @@ class Fingerprint:
         x=""
         if 'nt' in os.name:
             x += "wsl "
-        x += "nfseg {} 1 1 1 0 {}".format(self.fgp, self.converted.replace('jp2','png'))
+        x += "nfseg {} 1 1 1 0 {}".format(self.fgp, self.converted)
         a = check_output(x, shell=True, text=True).split('\n')
         for each in a:
             tmp = each.split('FILE')
@@ -143,7 +143,6 @@ class Fingerprint:
         o = i + '.' + encoding
         i = i + '.' + self.encoding
         x = ""
-        print("Encoding: {}".format(encoding))
         if 'nt' in os.name:
             x += "wsl "
         if encoding == 'jp2':

@@ -1,29 +1,68 @@
 {% load static %}
 <div class="step">
    <div class="row">
-      <div class="col"></div>
-      <!-- TITLE -->
-      <div class="col-lg-4 offset-lg-1 mx-0 px-0">
-         <h2>Confirm Fingerprint Sections</h2>
-      </div>
-      <div class="col"></div>
-   </div>
-   <div class="row">
-      <!-- FORMS -->
       <div class="col">
          <img id="lslap" src="{% static 'loading.gif' %}" class="loading-image" />
+      </div>
+      <div class="col">
+         <img id="thumb" src="{% static 'loading.gif' %}" class="loading-image" />
+      </div>
+      <div class="col">
+         <img id="rslap" src="{% static 'loading.gif' %}" class="loading-image" />
       </div>
    </div>
 </div>
 
+<script>
+   // Function to limit image size to 400px after the image loads
+   function updateImageSize(img) {
+       img.style.maxWidth = '400px';  // Set max width to 400px
+       img.style.maxHeight = '400px'; // Set max height to 400px
+       img.style.width = 'auto';      // Maintain aspect ratio
+       img.style.height = 'auto';     // Maintain aspect ratio
+   }
+
+   // Function to load the fingerprint image and update its size after it is loaded
+   function loadFingerprintImage(elementId, fingerprintPath) {
+       const imgElement = document.getElementById(elementId);
+       
+       const fingerprintImage = new Image();
+       fingerprintImage.src = fingerprintPath;
+
+       // When the fingerprint image loads, replace loading.gif and apply size constraints
+       fingerprintImage.onload = function() {
+           imgElement.src = fingerprintImage.src;  // Set the loaded fingerprint image
+           updateImageSize(imgElement);            // Apply the size limits (max 400px)
+       };
+
+       // Fallback: In case the image fails to load, you can handle errors here
+       fingerprintImage.onerror = function() {
+           console.log("Error loading image: " + fingerprintPath);
+       };
+   }
+
+   // Simulating image loading (replace with actual image loading logic)
+   setTimeout(() => {
+       loadFingerprintImage('lslap', '{% static "path/to/L_FOUR.png" %}');   // Left-hand image
+       loadFingerprintImage('rslap', '{% static "path/to/R_FOUR.png" %}');   // Right-hand image
+       loadFingerprintImage('thumb', '{% static "path/to/2_THUMBS.png" %}'); // Thumb image
+   }, 2000);  // Simulate a 2-second delay for loading fingerprint images
+</script>
+
 <style>
-   /* Targeting only images with the loading-image class */
-   .loading-image {
-      width: auto;
-      height: auto;
-      max-width: 100px;   /* Limit the width */
-      max-height: 100px;  /* Limit the height */
+   /* Ensure loading.gif has a smaller size */
+   .loading-image[src*="loading.gif"] {
+      max-width: 100px;
+      max-height: 100px;
       display: block;
-      margin: 0 auto;     /* Center the images */
+      margin: 0 auto;
+   }
+
+   /* Ensure general images are properly centered and sized */
+   .loading-image {
+      display: block;
+      margin: 0 auto;
+      max-width: 400px;   /* Ensure max width is 400px for fingerprint images */
+      max-height: 400px;  /* Ensure max height is 400px for fingerprint images */
    }
 </style>

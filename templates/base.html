@@ -1,13 +1,21 @@
 {% include 'partials/header.html' %}
-    {% include 'partials/navbar.html' %}
+{% include 'partials/navbar.html' %}
 
-    <body class="text-white">
+<body class="text-white">
     {% block content %}
     {% endblock %}
-    </body>
+</body>
+
 <style>
-    body{
-    background-color: black !important;
-}
+    body {
+        background-color: black !important;
+    }
 </style>
+
+<!-- Include the footer -->
 {% include 'partials/footer.html' %}
+
+<!-- Add a scripts block for child templates to insert their scripts -->
+{% block scripts %}
+<!-- Placeholder for additional scripts -->
+{% endblock %}

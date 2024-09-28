@@ -2,23 +2,24 @@
 {% block Title %}OpenEFT | Home{% endblock %}
 {% block content %}
 {% load static %}
-<div class="row align-items-center">
-    <div class="col-2"></div>
-    <div class="col-8 align-self-center">
-        <div class="card">
-            <div class="card-header">EFT File</div>
-            <div class="card-body">
-                <ul>
-                    <ul class="list-group">
-                        {% for file in files %}
-                        <li class="list-group-item">
-                            <a href="/static/{{ file }}" download>{{ file }}</a>
-                        </li>
-                        {% endfor %}
-                      </ul>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+    <h2>Available Downloads</h2>
+    <ul id="file-list">
+        {% for file in files %}
+        <li id="file_{{ file }}">
+            <a href="{% url 'new-download' filename=file %}">Download {{ file }}</a>
+            <button class="btn btn-danger delete-file-btn" data-delete-url="{% url 'delete_file' filename=file %}">Delete from server</button>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <!-- CSRF token -->
+    <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
+    
+    <!-- Message placeholder to display success/failure messages -->
+    <div id="message" style="display: none;"></div>
+{% endblock %}
+
+{% block scripts %}
+<!-- Link external JavaScript file -->
+<script src="{% static 'delete_file.js' %}"></script>
 {% endblock %}

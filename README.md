@@ -2,11 +2,13 @@
 
 <img src="static/openeftmed.png" />
 
+If you're here, you probably need to file a Form 1 or Form 4 and would like to use your electronic fingerprints! Welcome to the future, old man.
+
 OpenEFT is an open-source project originally created by Noah Wood. Its purpose is to convert physical FD-258 fingerprint cards to EBTS-packaged, EFT-formatted files.
 
-So, if you're here, you probably need to file a Form 1 or Form 4 and would like to file electronically.
+### Why the heck is there another version of this?
 
-The original software appears to be abandoned and had a few core issues, including links to moving codebases that are being maintained independently (such as NIST's NBIS). Because of this, 
+Well, the original software appears to be abandoned (the dev's Reddit account was deleted and the code is not being maintained). It also had a few core issues, including links to independently-maintained codebases (such as NIST's NBIS) and the use of older libraries. This project aims to make the installation process easier, provide a more seamless user experience, and extend the software lifecycle.
 
 ## How To Use
 

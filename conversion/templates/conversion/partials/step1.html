@@ -1,3 +1,4 @@
+{% load static %}
 <div class="step">
     <div class="row">
         <div class="col"></div>
@@ -11,7 +12,7 @@
         <!-- FORMS -->
         <div class="col"></div>
         <div class="col-lg-7 mx-0 px-0">
-            <img id="fp-img" src="" width="250" height="250">
+            <img id="fp-img" src="{% static 'eft.jpg' %}" class="img-fluid d-block mx-auto"  style="center; max-width: 150px; max-height: 150px;">
             <div>
                <form id="form1" method="POST" enctype="multipart/form-data">
                {% csrf_token %}
@@ -26,14 +27,26 @@
 </div>
 <script>
 function readURL(input) {
-    fpimg = document.getElementById("fp-img");
-    if(input.files[0]){
+    let fpimg = document.getElementById("fp-img");
+    if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onloadend = function() {
             fpimg.setAttribute("src", reader.result);
-            fpimg.removeAttribute("hidden");
-        };
 
+            // Create a temporary image to get the natural dimensions
+            var tempImg = new Image();
+            tempImg.src = reader.result;
+            tempImg.onload = function() {
+                // Calculate the aspect ratio
+                var aspectRatio = tempImg.width / tempImg.height;
+
+                // Set width to 500px and calculate height based on aspect ratio
+                fpimg.style.width = "500px";
+                fpimg.style.height = (500 / aspectRatio) + "px";  // Dynamically set the height
+                
+                fpimg.removeAttribute("hidden");  // Show the image if it was hidden
+            };
+        };
         reader.readAsDataURL(input.files[0]);
     }
 }

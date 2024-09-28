@@ -19,7 +19,7 @@
                     </select>
                 </div>
                 <div class="input-group mb-2">
-                    <span class="input-group-text">Date of Fingerprinting</span>
+                    <span class="input-group-text">Date Fingerprinted</span>
                     <input id="dof" name="dof" type="date" min="<?= date('Y-m-d'); ?>">
                 </div>
                 <div class="input-group mb-2">
@@ -33,3 +33,29 @@
         <div class="col"></div>
     </div>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var today = new Date();
+    var day = String(today.getDate()).padStart(2, '0');
+    var month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    var year = today.getFullYear();
+    
+    var formattedDate = year + '-' + month + '-' + day; // YYYY-MM-DD format for the date picker
+
+    // Set default value to the date input field
+    document.getElementById('dof').value = formattedDate;
+});
+</script>
+<style>
+    .input-group-text {
+        width: 180px; /* Set a fixed width for all gray boxes */
+        display: flex;
+        justify-content: center; /* Center the text */
+        align-items: center; /* Ensure vertical alignment */
+    }
+
+    /* Adjust the input field to fit with the input group */
+    .form-control, .form-select {
+        flex: 1; /* Ensure the input/select fields take the remaining space */
+    }
+</style>

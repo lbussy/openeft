@@ -16,10 +16,16 @@
                     <span class="input-group-text">First</span>
                     <input type="text" class="form-control" placeholder="First Name" id="fname" name="fname">
                 </div>
-                <div class="input-group mb-2">
-                    <span class="input-group-text">Middle</span>
-                    <input type="text" class="form-control" placeholder="Middle Name" id="mname" name="mname">
-                </div>
+				<div class="input-group mb-2">
+					<span class="input-group-text">Middle</span>
+					<input type="text" class="form-control" placeholder="Middle Name" id="mname" name="mname">
+					<div class="form-check ms-2">
+						<input class="form-check-input" type="checkbox" id="noMnameCheckbox">
+						<label class="form-check-label" for="noMnameCheckbox">
+							Check if no middle name
+						</label>
+					</div>
+				</div>
                 <div class="input-group mb-2">
                     <span class="input-group-text">Last</span>
                     <input type="text" class="form-control" placeholder="Last Name" id="lname" name="lname">
@@ -34,12 +40,90 @@
                     <input type="text" class="form-control" placeholder="555 Someplace DR, Albany, NY 44019" id="addr"
                         name="addr">
                 </div>
-                <div class="input-group mb-2">
-                    <span class="input-group-text" id="ssn">SSN</span>
-                    <input type="text" class="form-control" placeholder="555440123" id="ssn">
-                </div>
+				<div class="input-group mb-2">
+					<span class="input-group-text">SSN</span>
+					<!-- Move the ID to the input field -->
+					<input type="password" class="form-control" placeholder="555440123" id="ssn" name="ssn">
+				</div>
+				<div class="input-group mb-2">
+					<span class="input-group-text">Confirm SSN</span>
+					<!-- Move the ID to the input field -->
+					<input type="password" class="form-control" placeholder="Re-enter SSN" id="confirm-ssn" name="confirm-ssn">
+				</div>
+				<div class="mb-2">
+					<button type="button" id="validateSsnButton" class="btn btn-primary">Validate</button>
+					<span id="ssnValidationResult" class="text-danger ms-2"></span> <!-- Validation result message -->
+				</div>
             </div>
         </div>
         <div class="col"></div>
     </div>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var mnameInput = document.getElementById('mname');
+    var checkbox = document.getElementById('noMnameCheckbox');
+
+    checkbox.addEventListener('change', function () {
+        if (checkbox.checked) {
+            mnameInput.value = "NMN"; // Set value to "NMN" when checked
+            mnameInput.readOnly = true; // Make the field read-only to prevent edits
+        } else {
+            mnameInput.value = ""; // Clear the field when unchecked
+            mnameInput.readOnly = false; // Allow editing again
+        }
+    });
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var ssnInput = document.getElementById('ssn');
+    var confirmSsnInput = document.getElementById('confirm-ssn');
+    var validateButton = document.getElementById('validateSsnButton');
+    var validationResult = document.getElementById('ssnValidationResult');
+
+    // Check if the elements exist before proceeding
+    if (!ssnInput || !confirmSsnInput || !validateButton || !validationResult) {
+        console.error("One or more elements are missing from the DOM.");
+        return;
+    }
+
+    // Add a console log to verify if the event listener is working
+    validateButton.addEventListener('click', function () {
+        console.log("Validate button clicked");
+
+        // Trim whitespace and remove any dashes from both SSN fields for comparison
+        var ssnValue = ssnInput.value.trim().replace(/-/g, '');
+        var confirmSsnValue = confirmSsnInput.value.trim().replace(/-/g, '');
+
+        // Add logging to check values
+        console.log("SSN Value: ", ssnValue);
+        console.log("Confirm SSN Value: ", confirmSsnValue);
+
+        // Check if both SSNs match and have 9 digits
+        if (ssnValue === confirmSsnValue && ssnValue.length === 9) {
+            validationResult.textContent = "SSNs match! You can proceed.";
+            validationResult.classList.remove('text-danger');
+            validationResult.classList.add('text-success');
+            console.log("SSNs match");
+        } else {
+            validationResult.textContent = "SSNs error! Either your input doesn't match, or the field isn't (9) digits. Re-enter your SSN (without dashes) and validate again.";
+            validationResult.classList.remove('text-success');
+            validationResult.classList.add('text-danger');
+            console.log("SSNs do not match");
+        }
+    });
+});
+</script>
+<style>
+    .input-group-text {
+        min-width: 150px; /* Set a consistent width for all labels */
+        display: flex;
+        justify-content: center; /* Center align the text */
+    }
+
+    /* Adjust the input field to fit with the input group */
+    .form-control {
+        flex: 1; /* Ensure the input field takes the remaining space */
+    }
+</style>

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block Title %}OpenEFT | About{% endblock %}
+{% block Title %}OpenEFT | Support{% endblock %}
 {% block content %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/12.3.2/markdown-it.min.js"></script>
 <div class="card bg-dark">
@@ -15,7 +15,7 @@
 </style>
 <script>
 const md = window.markdownit();
-fetch("/static/about.md")
+fetch("/static/support.md")
 .then(response => response.text())
 .then(mdContent => {
     const htmlContent = md.render(mdContent);
@@ -26,5 +26,6 @@ fetch("/static/about.md")
         link.setAttribute('target', '_blank');
     });
 });
+</script>
 </script>
 {% endblock %}

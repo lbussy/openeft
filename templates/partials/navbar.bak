@@ -1,8 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/" style="display:inline-block">
-        <!-- Replace text with logo and add padding -->
-        <img src="/static/openeftsm.png" alt="OpenEFT Logo" class="navbar-logo">
-    </a>
+    <a class="navbar-brand" href="/" style="display:inline-block"><b>OpenEFT</b></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -26,22 +23,8 @@
                 <a class="nav-link" href="/features">Features</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/support">Support OpenEFT</a>
+                <a class="nav-link" href="/donate">Donate</a>
             </li>
         </ul>
     </div>
 </nav>
-
-<style>
-    .navbar-logo {
-        max-height: 50px;  /* Adjust to fit your navbar height */
-        height: auto;
-        width: auto;
-        padding-right: 20px; /* Add padding to the right to center the logo */
-        padding-left: 10px; /* Add padding to the left if needed */
-    }
-    .nav-item-image {
-        max-height: 50px;  /* Adjust size of the image */
-        width: auto;
-    }
-</style>

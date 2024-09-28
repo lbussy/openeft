@@ -32,26 +32,23 @@
                 </div>
                 <div class="input-group mb-2">
                     <span class="input-group-text">AKA</span>
-                    <input type="text" class="form-control" placeholder="Comma, Separated, Aliases" id="alias"
-                        name="aliase">
+                    <input type="text" class="form-control" placeholder="Comma, Separated, Aliases" id="alias" name="aliase">
                 </div>
                 <div class="input-group mb-2">
                     <span class="input-group-text">Address</span>
-                    <input type="text" class="form-control" placeholder="555 Someplace DR, Albany, NY 44019" id="addr"
-                        name="addr">
+                    <input type="text" class="form-control" placeholder="555 Someplace DR, Albany, NY 44019" id="addr" name="addr">
                 </div>
 				<div class="input-group mb-2">
 					<span class="input-group-text">SSN</span>
-					<!-- Move the ID to the input field -->
 					<input type="password" class="form-control" placeholder="555440123" id="ssn" name="ssn">
 				</div>
 				<div class="input-group mb-2">
 					<span class="input-group-text">Confirm SSN</span>
-					<!-- Move the ID to the input field -->
 					<input type="password" class="form-control" placeholder="Re-enter SSN" id="confirm-ssn" name="confirm-ssn">
 				</div>
 				<div class="mb-2">
-					<button type="button" id="validateSsnButton" class="btn btn-primary">Validate SSN</button>
+					<!-- Apply the custom class to the Validate button -->
+					<button type="button" id="validateSsnButton" class="btn custom-btn">Validate SSN</button>
 					<span id="ssnValidationResult" class="text-danger ms-2"></span> <!-- Validation result message -->
 				</div>
             </div>
@@ -59,6 +56,7 @@
         <div class="col"></div>
     </div>
 </div>
+
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     var mnameInput = document.getElementById('mname');
@@ -75,6 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
+
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     var ssnInput = document.getElementById('ssn');
@@ -88,7 +87,6 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
-    // Add a console log to verify if the event listener is working
     validateButton.addEventListener('click', function () {
         console.log("Validate button clicked");
 
@@ -96,7 +94,6 @@ document.addEventListener('DOMContentLoaded', function () {
         var ssnValue = ssnInput.value.trim().replace(/-/g, '');
         var confirmSsnValue = confirmSsnInput.value.trim().replace(/-/g, '');
 
-        // Add logging to check values
         console.log("SSN Value: ", ssnValue);
         console.log("Confirm SSN Value: ", confirmSsnValue);
 
@@ -115,6 +112,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
+
 <style>
     .input-group-text {
         min-width: 150px; /* Set a consistent width for all labels */
@@ -125,5 +123,18 @@ document.addEventListener('DOMContentLoaded', function () {
     /* Adjust the input field to fit with the input group */
     .form-control {
         flex: 1; /* Ensure the input field takes the remaining space */
+    }
+
+    /* Custom button styles */
+    .custom-btn {
+        background-color: #bada55 !important; /* Button background color */
+        font-weight: bold !important; /* Bold text */
+        border-color: #bada55 !important; /* Border color to match the background */
+        color: #fff !important; /* Text color */
+    }
+    
+    .custom-btn:hover {
+        background-color: #a9cb4b !important; /* Slightly darker on hover */
+        border-color: #a9cb4b !important;
     }
 </style>

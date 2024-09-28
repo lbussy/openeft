@@ -180,9 +180,25 @@ fetch("/static/commits.xml")
     })
 </script>
 
-    <!-- Added button -->
-    <div class="text-center mt-5">
-        <a href="http://localhost:8080/new" class="btn btn-primary btn-lg">Start New EFT</a>
-    </div>
+<!-- Added button with custom styles -->
+<div class="text-center mt-5">
+    <a href="http://localhost:8080/new" class="btn custom-btn btn-lg">Start New EFT</a>
+</div>
+
+<!-- Inline styles for button customization -->
+<style>
+    /* Ensure that the custom styles override Bootstrap */
+    a.custom-btn {
+        background-color: #bada55 !important; /* Button background color */
+        font-weight: bold !important; /* Bold text */
+        border-color: #bada55 !important; /* Border color to match the background */
+        color: #fff !important; /* Text color */
+    }
+    
+    a.custom-btn:hover {
+        background-color: #a9cb4b !important; /* Slightly darker on hover */
+        border-color: #a9cb4b !important;
+    }
+</style>
 
     {% endblock %}

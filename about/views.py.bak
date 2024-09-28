@@ -8,6 +8,6 @@ def about(request):
 def features(request):
     return render(request, "about/features.html")
 
-def support(request):
-    return render(request, "about/support.html")
+def donate(request):
+    return render(request, "about/donate.html")
 

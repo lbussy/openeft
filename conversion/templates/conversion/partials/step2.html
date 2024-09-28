@@ -11,18 +11,19 @@
    <div class="row">
       <!-- FORMS -->
       <div class="col">
-         <img id="lslap" src="{% static 'loading.gif' %}" />
-      </div>
-      <div class="col">
-         <img id="thumb" src="{% static 'loading.gif' %}" />
-      </div>
-      <div class="col">
-         <img id="rslap" src="{% static 'loading.gif' %}" />
+         <img id="lslap" src="{% static 'loading.gif' %}" class="loading-image" />
       </div>
    </div>
 </div>
+
 <style>
-   img {
-      width: 100%;
+   /* Targeting only images with the loading-image class */
+   .loading-image {
+      width: auto;
+      height: auto;
+      max-width: 100px;   /* Limit the width */
+      max-height: 100px;  /* Limit the height */
+      display: block;
+      margin: 0 auto;     /* Center the images */
    }
 </style>

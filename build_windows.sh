@@ -39,3 +39,4 @@ python3 manage.py migrate
 
 echo "OpenEFT build complete. Update your PATH by typing 'source ~/.bashrc' and run the app by typing 'python3 openeft.py'"
 cd ~/OpenEFT
+source ~/.bashrc

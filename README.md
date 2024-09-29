@@ -63,6 +63,9 @@ Well, the original software appears to be abandoned (the dev's Reddit account wa
 
 #### if Docker (in Windows)
 
+Automated pull using dockercli: `docker pull robbstumpf/openeft`
+
+Manual pull:
 Save Dockerfile to `Downloads` folder
 Ensure Docker Desktop is running
 Open `CMD` and navigate to `%userprofile%\Downloads`
@@ -130,12 +133,14 @@ If you've never had your fingerprints taken, you definitely need to know how to 
 
 ## ScreenShots
 
-![](docs/imgs/openeft_gui.png)
+![](![](images/openeft1.jpg))
 
-![Confirmation With ATF](docs/imgs/personal.png)
+![](images/openeft2.jpg)
 
-![](docs/imgs/eft_files.png)
+![](images/openeft5.jpg)
 
+![](images/openeft6.jpg)
 
+![](images/openeft9.jpg)
 
-![Confirmation With ATF](docs/imgs/ITWORKS.png)
+![](images/openeft10.jpg)

@@ -61,6 +61,24 @@ Well, the original software appears to be abandoned (the dev's Reddit account wa
    ```
 *Not working?* Did you remember to enter a WSL session like in Step 2?
 
+#### if Docker (in Windows)
+
+Save Dockerfile to `Downloads` folder
+Ensure Docker Desktop is running
+Open `CMD` and navigate to `%userprofile%\Downloads`
+Run the following command to build the Docker image
+
+```sh
+docker build -t openeft-0.4.0 .
+```
+Note that 0.4.0 is the version when this guide was published. You can name it `openeft` if you don't care about versioning.
+
+Run the Docker image and expose it to TCP/8080:
+
+```sh
+docker run -p 8080:8080 openeft-0.4.0
+```
+
 #### If Linux
 
    ```sh
@@ -85,8 +103,9 @@ Well, the original software appears to be abandoned (the dev's Reddit account wa
 
 #### Operating Systems
 
-* Windows using WSL (https://learn.microsoft.com/en-us/windows/wsl/install)
-* Linux (Ubuntu) - **Untested**
+* Windows using WSL (https://learn.microsoft.com/en-us/windows/wsl/install) - Tested, working
+* Docker - Tested, working
+* Linux (Ubuntu) - **Untested** - Docker is working using the `./build_linux.sh` script, so assuming you have the dependencies installed, you should be golden.
 
 ## Tips
 

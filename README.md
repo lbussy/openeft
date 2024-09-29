@@ -15,10 +15,10 @@ Well, the original software appears to be abandoned (the dev's Reddit account wa
 1. Print an FD-258 card (use <a href=fd-258-110120.pdf>this file</a> for a fillable card)
 
 2. Roll your prints on the card (you don't need to fill out the boxes)
-
-3. Take a high-resolution **1:1** scan (at least 600 DPI) of the completed FD-258 card.
 - - **There is no need to fill out your personally identifiable information**
   - **EForms only recognizes slaps and thumbs, so there is no need to roll your 10prints on this branch**
+
+3. Take a high-resolution **1:1** scan (at least 600 DPI) of the completed FD-258 card.
 
 4. After following the install instructions below, run the Python program from the command line like so:
 

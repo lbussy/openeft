@@ -118,6 +118,10 @@ If you've never had your fingerprints taken, you definitely need to know how to 
 
 [![Rolling Your Prints](http://img.youtube.com/vi/47YLGj_yLVA/0.jpg)](//www.youtube.com/watch?v=47YLGj_yLVA "Fingerprinting Technique")
 
+#### A Note On Scanners
+
+Be sure that your scans are at least 600 DPI. Most modern flatbad scanners (and multi-function printers) scan well above this, but just check the specs of your printer before scanning in.
+
 
 #### External Libraries
 

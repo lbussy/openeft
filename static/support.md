@@ -10,6 +10,7 @@ Want to support the ongoing efforts to keep this program alive? Here's a few way
 | [Suppressor Rack](https://www.etsy.com/listing/1543341366/silncr-the-modular-suppressor-storage) |   | I make some suppressor storage for your safe |
 | [PayPal](https://paypal.me/RobbStumpf) |   | Buy me a donut :) |
 | [Venmo](https://venmo.com/RobbStumpf) |   | Donate a few bucks for me to spend on GAFS |
+| [Noah Wood](https://github.com/NoahGWood/OpenEFT) |   | Support the original dev of the project |
 
 ----
 

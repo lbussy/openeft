@@ -1,5 +1,25 @@
 ##### Changelog:
-###### 2024/09/28 - First major release!
+###### 2024/11/30 - 0.5.0 - Belligerent Badger
+- Created \templates\partials\country.html
+	- Future release planning, compliance with ISO-3166 Alpha-2
+- Created \templates\partials\state_usonly.html
+	- Future release planning
+- Removed .bak files
+- Updated \settings.py
+	- Allow all hostnames
+- Updated \conversion\views.py
+	- Added logic for computing EFT filesize
+- Updated \conversion\templates\conversion\download.html
+	- Added logic to show filesize of generated EFT
+	- Added troubleshooting instructions for large/invalid EFTs
+- Updated \conversion\templates\conversion\index.html
+	- Removed hard link for "Start New EFT"
+- Updated \conversion\templates\conversion\partials\step5.html
+	- Added logic for non-US Place of Birth
+- Updated \templates\partials\state.html
+	- Interim release logic, added country codes in compliance with ISO-3166 Alpha-2
+
+###### 2024/09/28 - 0.4.0 - Alarming Ape (First major release!)
 After it turned into abandonware, I've taken it on to overhaul OpenEFT to make it function better. I'm no developer, but I know enough to ~~break~~ fix a few things.
 Let's talk about some major changes
 

@@ -5,20 +5,23 @@
     <h2>Available Downloads</h2>
     <ul id="file-list">
         {% for file in files %}
-        <li id="file_{{ file }}">
-            <a href="{% url 'new-download' filename=file %}">Download {{ file }}</a>
-            <button class="btn btn-danger delete-file-btn" data-delete-url="{% url 'delete_file' filename=file %}">Delete from server</button>
+        <li id="file_{{ file.name }}">
+            <a href="{% url 'new-download' filename=file.name %}">Download {{ file.name }}</a>
+            <!-- Display the file size in MB with 1 decimal point -->
+            <span class="file-size">({{ file.size }} MB)</span>
+            <button class="btn btn-danger delete-file-btn" data-delete-url="{% url 'delete_file' filename=file.name %}">Delete from server</button>
         </li>
         {% endfor %}
     </ul>
-
+		<p>
+		<strong>File size > 12MB or unable to be verified?</strong><br>
+		Make sure your prints are clear (not smudged or too heavy) and your scan has no dust/dirt. Try reducing DPI or resolution for further file size reduction.
     <!-- CSRF token -->
     <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
     
     <!-- Message placeholder to display success/failure messages -->
     <div id="message" style="display: none;"></div>
 {% endblock %}
-
 {% block scripts %}
 <!-- Link external JavaScript file -->
 <script src="{% static 'delete_file.js' %}"></script>

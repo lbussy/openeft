@@ -4,8 +4,8 @@ import time
 import json
 import threading
 
-from django.http import JsonResponse, HttpResponse  # Import HttpResponse here
-from urllib.parse import quote  # Depreciated urlquote
+from django.http import JsonResponse, HttpResponse
+from urllib.parse import quote
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.views.decorators.http import require_http_methods
@@ -64,7 +64,18 @@ def step2(request):
         print(data)
         fname = generate_eft(data)
         FILES.append(fname)
-    return render(request, "conversion/download.html", context={'files': FILES})
+
+    # Get the file sizes and add them to the context
+    file_info = []
+    for file in FILES:
+        file_path = os.path.join(TMP_DIR, file)
+        if os.path.exists(file_path):
+            file_size = os.path.getsize(file_path)
+            # Convert the size to MB and round it to 1 decimal place
+            file_size_mb = round(file_size / (1024 * 1024), 1)
+            file_info.append({'name': file, 'size': file_size_mb})
+    
+    return render(request, "conversion/download.html", context={'files': file_info})
 
 def download(request, filename):
     """
@@ -76,7 +87,6 @@ def download(request, filename):
     if os.path.exists(file_path):
         with open(file_path, 'rb') as fh:
             response = HttpResponse(fh.read(), content_type="application/octet-stream")
-            # Depreciated urlquote - using `quote` instead of `urlquote`
             response['Content-Disposition'] = f'attachment; filename={quote(filename)}'
             return response
     else:

@@ -95,8 +95,8 @@ class Fingerprint:
 
     def get_settings(self):
         self.ppi = self.get_ppi()
-        self.hll = self.img.shape[0]# HORIZONTAL LINE LENGTH
-        self.vll = self.img.shape[1] # VERTICAL LINE LENGTH
+        self.hll = self.img.shape[1]# HORIZONTAL LINE LENGTH
+        self.vll = self.img.shape[0] # VERTICAL LINE LENGTH
         self.slc = "1" # SCALE UNITS
         self.bpx = 8 # BITS PER PIXEL, should be 8
 

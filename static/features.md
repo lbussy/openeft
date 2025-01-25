@@ -1,4 +1,14 @@
 ##### Changelog:
+###### 2024/11/30 - 0.6.0 - Curious Cassowary
+- Updated \conversion\core\fingerprint.py
+	- Major overhaul
+  	- Significantly smaller filesize for properly-formatted source scans
+ 	- Faster EFT generation and validation
+	- Modified image resize, added logic to retain original aspect ratio
+	- Force grayscale of prints
+ 	- Fixed permuted values of HLL/VLL
+ 	- Fixed certain compliance values for EBTS validation on NIST viewer
+
 ###### 2024/11/30 - 0.5.0 - Belligerent Badger
 - Created \templates\partials\country.html
 	- Future release planning, compliance with ISO-3166 Alpha-2

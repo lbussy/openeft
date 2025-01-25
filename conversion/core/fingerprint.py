@@ -2,6 +2,7 @@ import os
 from subprocess import check_output
 import cv2
 import math
+import numpy as np
 from conversion.core.eft_helper import US_CHAR
 from conversion.core.fd258_ocr import OCR_LOCATIONS
 
@@ -40,7 +41,7 @@ class Finger:
         self.y1 = str(abs(int((self.sh / 2) * math.cos(self.t) - (self.sw / 2)))) # Top
         self.x2 = str(abs(int((self.sw / 2) * math.cos(self.t) + (self.sh / 2)))) # Top
         self.y2 = str(abs(int((self.sh / 2) * math.cos(self.t) - (self.sw / 2)))) # Bottom
-        
+
     def segmentQuality(self):
         # Four fields in each finger
 
@@ -111,9 +112,15 @@ class Fingerprint:
         self.ppi = round((x+y)/2) 
 
     def extract_fp(self, bbox):
-        (x,y,w,h) = bbox
-        self.img = self.src[y:y+h, x:x+w]
-#        self.img = cv2.resize(self.img, (1000,1000), interpolation=cv2.INTER_LINEAR_EXACT)
+        """
+        Extract the fingerprint from the bounding box, resize it, and process it further.
+        """
+        (x, y, w, h) = bbox
+        self.img = self.src[y:y + h, x:x + w]
+        print(f"Extracted image shape: {self.img.shape}")  # Debug log
+
+        self.crop_image()  # Crop unnecessary whitespace
+        self.resize_image(min_side=1400)  # Resize with proper scaling
         self.save_image()
 
     def segment(self):
@@ -127,19 +134,80 @@ class Fingerprint:
             if len(tmp) > 1 and len(tmp[1])>1:
                 tmp = tmp[1]
                 self.fingers.append(Finger(tmp))
+    def crop_image(self):
+        print(f"Image shape before cropping: {self.img.shape}")
+        """Crop the image to remove unnecessary white space."""
+        # Ensure the image is at least 2D
+        if len(self.img.shape) == 2:
+            gray = self.img  # Image is already grayscale
+        else:
+            gray = cv2.cvtColor(self.img, cv2.COLOR_BGR2GRAY)  # Convert to grayscale if needed
 
+        # Threshold and crop
+        _, thresh = cv2.threshold(gray, 1, 255, cv2.THRESH_BINARY)
+        x, y, w, h = cv2.boundingRect(thresh)
+        self.img = self.img[y:y + h, x:x + w]
+        print(f"Image shape before cropping: {self.img.shape}")
 
+    def resize_image(self, min_side=1400):
+        """
+        Resize the image to ensure the smallest side is at least `min_side` while maintaining aspect ratio.
+        """
+        h, w = self.img.shape[:2]
+
+        # Calculate scaling factor to make the smallest side equal to or greater than `min_side`
+        scaling_factor = max(min_side / w, min_side / h)
+        new_width = int(w * scaling_factor)
+        new_height = int(h * scaling_factor)
+
+        # Resize the image while maintaining aspect ratio
+        self.img = cv2.resize(self.img, (new_width, new_height), interpolation=cv2.INTER_AREA)
+
+        print(f"Image resized to: {self.img.shape}")  # Debug log
+
+    def set_dpi(self, dpi):
+        """
+        Adjust the DPI metadata of the image. 
+        OpenCV does not support this directly, so this requires using the PIL library.
+        """
+        from PIL import Image
+        import tempfile
+
+        # Save the current image temporarily
+        temp_file = tempfile.NamedTemporaryFile(suffix=".png", delete=False)
+        cv2.imwrite(temp_file.name, self.img)
+
+        # Open the image with PIL and adjust DPI
+        with Image.open(temp_file.name) as pil_img:
+            pil_img.save(temp_file.name, dpi=(dpi, dpi))
+
+        # Reload the adjusted image back into OpenCV format
+        self.img = cv2.imread(temp_file.name)
+        os.remove(temp_file.name)
 
     def save_image(self, encoding=None):
-        if encoding == None:
+        """Save the processed image to disk, ensuring it is in 8-bit grayscale."""
+        if encoding is None:
             f = os.path.join(self.tmpdir, self.name) + '.' + self.encoding
         else:
             f = os.path.join(self.tmpdir, self.name) + '.' + encoding
-        cv2.imwrite(f, self.img)
+
+        # Convert to grayscale if the image has 3 channels
+        if len(self.img.shape) == 3:
+            gray_img = cv2.cvtColor(self.img, cv2.COLOR_BGR2GRAY)
+        else:
+            gray_img = self.img  # Already grayscale
+
+        cv2.imwrite(f, gray_img)
 
     def convert(self, encoding='jp2', ratio=10):
+        """
+        Convert the image to the desired encoding and compression ratio.
+        """
         self.get_settings()
-        i = os.path.join(self.tmpdir,self.name)
+        self.crop_image()  # Ensure the image is cropped
+        self.resize_image(min_side=1400)  # Resize with proper scaling
+        i = os.path.join(self.tmpdir, self.name)
         o = i + '.' + encoding
         i = i + '.' + self.encoding
         x = ""
@@ -147,10 +215,8 @@ class Fingerprint:
         if 'nt' in os.name:
             x += "wsl "
         if encoding == 'jp2':
-            self.cga = "JP2" # COMPRESSION ALGORITHM [242-HQ-A6687913-SYSDOCU 3.82 value (ASCII)]
-            x += "opj_compress -i {} -o {} -r {} -n 2".format(i,o, ratio)
-        # Add other options later if needed.
+            self.cga = "JP2"  # COMPRESSION ALGORITHM
+            x += "opj_compress -i {} -o {} -r {} -n 2".format(i, o, ratio)
         os.system(x)
         self.converted = o
-        # Now segment
-        self.segment()
+        self.segment()  # Now segment the compressed file

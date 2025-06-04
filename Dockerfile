@@ -16,6 +16,8 @@ RUN apt-get update && apt-get install -y \
     sudo \
     build-essential \
     cmake \
+    chromium \
+    chromium-bsu \
     libopenjp2-7-dev \
     libgl1-mesa-glx \
     libx11-dev \
@@ -36,7 +38,7 @@ RUN mkdir /root/build && \
     echo "Setting Up NBIS" && \
     git clone https://github.com/Robbbbbbbbb/nbis /root/OpenEFT/nbis && \
     cd /root/OpenEFT/nbis && \
-    ./setup.sh /root/build --64 && \
+    ./setup.sh /root/build && \
     echo "Configuring NBIS" && \
     make config && \
     echo "Making NBIS" && \
@@ -55,7 +57,7 @@ RUN pip3 install -r requirements.txt
 RUN python3 manage.py migrate
 
 # Run the build_linux.sh script
-RUN chmod +x build_docker.sh && ./build_docker.sh
+RUN chmod +x build_docker.sh && ./build_docker.shq
 
 # Set the default command to run the application
 CMD ["python3", "openeft.py"]

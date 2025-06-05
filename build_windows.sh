@@ -6,7 +6,7 @@ echo "Setting Up NBIS"
 sudo rm -rf ./nbis #Remove any old copies
 git clone https://github.com/lbussy/nbis ./nbis
 cd nbis
-./setup.sh ${PWD}/../build --64
+./setup.sh ${PWD}/../build
 echo "Configuring NBIS"
 make config
 echo "Making NBIS"

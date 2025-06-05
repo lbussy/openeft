@@ -34,7 +34,7 @@ WORKDIR /root/OpenEFT
 # Clone and set up NBIS in the repo directory
 RUN mkdir /root/build && \
     echo "Setting Up NBIS" && \
-    git clone https://github.com/lbussy/nbis /root/OpenEFT/nbis && \
+    git clone https://github.com/lbussy/nbis.git /root/OpenEFT/nbis && \
     cd /root/OpenEFT/nbis && \
     ./setup.sh /root/build && \
     echo "Configuring NBIS" && \

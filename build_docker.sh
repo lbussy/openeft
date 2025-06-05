@@ -1,19 +1,13 @@
 # This is untested!
 #!/usr/bin/bash
 
-mkdir build
-mkdir -p browser/linux
-
 echo "Updating Submodules"
-git submodule update
-
-echo "Setting Up NBIS"
-# Remove any old copies of NBIS
-sudo rm -rf ./nbis 
-git clone https://github.com/lbussy/nbis ./nbis
+# Make sure submodule exists
+git submodule update --init --recursive
 cd nbis
 
-./setup.sh ${PWD}/../build --64
+echo "Setting up nbis"
+./setup.sh ${PWD}/../build
 
 echo "Configuring NBIS"
 make config
@@ -39,13 +33,6 @@ esac
 echo "Installing LibOpenJP2-Tools"
 sudo apt-get install libopenjp2-tools -y
 sudo apt-get install libgl1-mesa-glx -y
-
-# Move to browser directory and set up chromium
-cd ../browser/linux
-wget "https://github.com/clickot/ungoogled-chromium-binaries/releases/download/111.0.5563.65-1/ungoogled-chromium_111.0.5563.65-1.1.AppImage"
-mv ungoogled-chromium_111.0.5563.65-1.1.AppImage chrome.AppImage
-
-cd ../../
 
 # Install Python dependencies
 echo "Installing Pip Requirements"

@@ -1,5 +1,5 @@
 # Base image
-FROM ubuntu:20.04
+FROM zenika/alpine-chrome
 
 # Expose port 8080
 EXPOSE 8080

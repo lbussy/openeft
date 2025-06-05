@@ -28,7 +28,7 @@ def browser():
         if check_output("wsl ./browser/windows/chrome.exe --app=http://localhost:8080", shell=True) is not None:
             pass
     elif 'posix' in os.name or 'linux' in os.name:
-        if check_output("chromium-browser --app=http://localhost:8080/", shell=True) is not None:
+        if check_output("chromium-browser", "--no-sandbox --app=http://localhost:8080/", shell=True) is not None:
             pass
     # Force exit if not already
     x.cleanup()

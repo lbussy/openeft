@@ -1,5 +1,5 @@
 # Base image
-FROM zenika/alpine-chrome
+FROM debian:bookworm
 
 # Expose port 8080
 EXPOSE 8080
@@ -16,6 +16,8 @@ RUN apt-get update && apt-get install -y \
     sudo \
     build-essential \
     cmake \
+    chromium-browser \
+    chromium-bsu \
     libopenjp2-7-dev \
     libgl1-mesa-glx \
     libx11-dev \

@@ -4,7 +4,7 @@ mkdir build
 
 echo "Setting Up NBIS"
 sudo rm -rf ./nbis #Remove any old copies
-git clone https://github.com/Robbbbbbbbb/nbis ./nbis
+git clone https://github.com/lbussy/nbis ./nbis
 cd nbis
 ./setup.sh ${PWD}/../build --64
 echo "Configuring NBIS"

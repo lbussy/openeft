@@ -10,7 +10,7 @@ git submodule update
 echo "Setting Up NBIS"
 # Remove any old copies of NBIS
 sudo rm -rf ./nbis 
-git clone https://github.com/Robbbbbbbbb/nbis ./nbis
+git clone https://github.com/lbussy/nbis ./nbis
 cd nbis
 
 ./setup.sh ${PWD}/../build --64

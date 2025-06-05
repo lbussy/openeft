@@ -27,7 +27,7 @@ RUN apt-get update && apt-get install -y \
     bash
 
 # Clone the OpenEFT repository
-RUN git clone https://github.com/robbbbbbbbb/OpenEFT.git /root/OpenEFT && \
+RUN git clone https://github.com/lbussy/OpenEFT.git /root/OpenEFT && \
     cd /root/OpenEFT && git pull
 
 # Set working directory to the cloned repo
@@ -36,7 +36,7 @@ WORKDIR /root/OpenEFT
 # Clone and set up NBIS in the repo directory
 RUN mkdir /root/build && \
     echo "Setting Up NBIS" && \
-    git clone https://github.com/Robbbbbbbbb/nbis /root/OpenEFT/nbis && \
+    git clone https://github.com/lbussy/nbis /root/OpenEFT/nbis && \
     cd /root/OpenEFT/nbis && \
     ./setup.sh /root/build && \
     echo "Configuring NBIS" && \
@@ -57,7 +57,7 @@ RUN pip3 install -r requirements.txt
 RUN python3 manage.py migrate
 
 # Run the build_linux.sh script
-RUN chmod +x build_docker.sh && ./build_docker.shq
+RUN chmod +x build_docker.sh && ./build_docker.sh
 
 # Set the default command to run the application
 CMD ["python3", "openeft.py"]

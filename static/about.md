@@ -20,7 +20,7 @@ That's basically half the price of a another suppressor. Let's change that.
 
 This fork is maintained by your friendly neighborhood FFL (me).
 
-Please [open an issue or start a discussion on Github](https://github.com/robbbbbbbbb/OpenEFT/) with any problems. I love feedback, but I don't have time to answer support calls at my shop :)
+Please [open an issue or start a discussion on Github](https://github.com/lbussy/OpenEFT/) with any problems. I love feedback, but I don't have time to answer support calls at my shop :)
 
 ----
 

@@ -138,12 +138,12 @@ import requests
 import requests_cache
 
 requests_cache.install_cache('my-cache')
-about = requests.get("https://raw.githubusercontent.com/Robbbbbbbbb/OpenEFT/main/docs/about.md")
-features = requests.get("https://raw.githubusercontent.com/Robbbbbbbbb/OpenEFT/main/docs/features.md")
-donate = requests.get("https://raw.githubusercontent.com/Robbbbbbbbb/OpenEFT/main/docs/donate.md")
-commits = requests.get("https://github.com/Robbbbbbbbb/OpenEFT/commits.atom")
-discussions = requests.get("https://github.com/Robbbbbbbbb/OpenEFT/discussions.atom")
-releases = requests.get("https://github.com/Robbbbbbbbb/OpenEFT/releases.atom")
+about = requests.get("https://raw.githubusercontent.com/lbussy/OpenEFT/main/docs/about.md")
+features = requests.get("https://raw.githubusercontent.com/lbussy/OpenEFT/main/docs/features.md")
+donate = requests.get("https://raw.githubusercontent.com/lbussy/OpenEFT/main/docs/donate.md")
+commits = requests.get("https://github.com/lbussy/OpenEFT/commits.atom")
+discussions = requests.get("https://github.com/lbussy/OpenEFT/discussions.atom")
+releases = requests.get("https://github.com/lbussy/OpenEFT/releases.atom")
 with open(os.path.join(TMP_DIR, "about.md"),'wb') as f:
     f.write(about.content)
 with open(os.path.join(TMP_DIR, "features.md"),'wb') as f:
